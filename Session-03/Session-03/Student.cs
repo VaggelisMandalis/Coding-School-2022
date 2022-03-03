@@ -10,5 +10,13 @@ namespace Session_03
     {
         public int RegistrationNumber { get; set; }
         public Course[] Courses { get; set; }
+
+        public Student() { }
+
+        public void Attend(Course course, DateTime dateTIme) { }
+
+        public void WriteExam(Course course, DateTime dateTime) { }
+
+
     }
 }

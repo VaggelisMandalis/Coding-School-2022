@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_03
 {
-    public  class Univercity : Institute
+    public class University : Institute
     {
         public Student[] Students { get; set; }
         public Course[] Courses { get; set; }
@@ -19,5 +19,19 @@ namespace Session_03
             Courses = new Course[20];
             Schedules = new Schedule[60];
         }
+
+        public Student[] GetsStudents()
+        {
+            return Students;
+        }
+        public Course[] GetCourses()
+        {   
+            return Courses;
+        }
+        public Grade[] GetGrades()
+        {
+            return Grades;
+        }
+        
     }
 }

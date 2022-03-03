@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Session_03
 {
-    public  class Course
+    public class Course
     {
-        public string code;
-        public string subject;
+        
+        public Guid ID { get;  } 
+        public string code { get; set; }
+        public string subject { get; set; } 
         
         public Course()
         {
-
+          Guid ID = Guid.NewGuid();
         }
     }
 }

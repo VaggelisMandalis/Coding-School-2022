@@ -8,14 +8,22 @@ namespace Session_03
 {
     public class Professors : Person
     {
-       public new  Guid ID { get; } = Guid.NewGuid();
-        
-        public string Rank; 
-        public string getName () { return name; }
-        public void setName(string name) { name = name; }
-        public Professors()
+        public string Rank { get; set; }
+
+        public Course[] Courses { get; set; }
+       
+        public void Teach (Course course , DateTime Date)
         {
 
+        }
+        public void SetGrade(Guid studentId, Guid courseId, int grade)
+        {
+
+        }
+
+        public new string GetName()
+        {
+            return "Dr. " + Name;
         }
     }
 }

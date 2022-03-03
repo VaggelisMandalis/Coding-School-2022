@@ -10,6 +10,16 @@ namespace Session_03
     {
         public Guid ID { get; } 
         public Guid StudentID { get; set; }
-        public Guid CourseID { get; } = Guid.NewGuid();
+        public Guid CourseID { get; set; }
+        
+        public int Value { get; set; }
+
+        public Grade() {
+            ID = Guid.NewGuid();
+        }
+        public Grade(Guid studentID)
+        {
+            StudentID = studentID;
+        }
     }
 }

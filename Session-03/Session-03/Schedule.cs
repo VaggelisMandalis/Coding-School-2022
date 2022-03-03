@@ -8,9 +8,15 @@ namespace Session_03
 {
     public  class Schedule
     {
-        Guid id = Guid.NewGuid();
-        Guid courseID = Guid.NewGuid();
-        Guid profersorID = Guid.NewGuid();
+        public Guid ID { get; set; }   \
+
+        public Guid CourseID { get; set; }  
+
+        public Guid ProfessorID { get; set; }
+
+        public DateTime Calendar { get; set; }
+
+
 
     }
 }

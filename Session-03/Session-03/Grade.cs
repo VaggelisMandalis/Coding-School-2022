@@ -8,7 +8,8 @@ namespace Session_03
 {
     public class Grade
     {
-        public Guid studentsID { get; } = Guid.NewGuid();
+        public Guid ID { get; } 
+        public Guid StudentID { get; set; }
         public Guid CourseID { get; } = Guid.NewGuid();
     }
 }

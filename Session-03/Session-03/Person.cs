@@ -10,14 +10,12 @@ namespace Session_03
     {
     public Guid ID { get; } = Guid.NewGuid();
     public int age { get; set; }
-    public string Name;
-    public string getName() { return Name; }
-    public void setName(string name) { Name = name; }
-    public Person()
-        {
-            Guid ID = Guid.NewGuid();
-        }
-
+    public string Name { get; set; }
+    public string GetName() { return Name; }
+    public void SetName(string name) { Name = name; }
+    public Person() { 
+        
+        } 
     }
     
 }

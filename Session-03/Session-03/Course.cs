@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_03
 {
-    internal class Course
+    public  class Course
     {
         public string code;
         public string subject;

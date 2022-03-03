@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Session_03
 {
-    internal class Professors
+    public class Professors : Person
     {
-        Guid ID= Guid.NewGuid();
-        public string name;
+       public new  Guid ID { get; } = Guid.NewGuid();
+        
         public string Rank; 
         public string getName () { return name; }
         public void setName(string name) { name = name; }

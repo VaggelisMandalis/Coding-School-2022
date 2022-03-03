@@ -8,7 +8,7 @@ namespace Session_03
 {
     public  class Schedule
     {
-        public Guid ID { get; set; }   \
+        public Guid ID { get; set; }   
 
         public Guid CourseID { get; set; }  
 

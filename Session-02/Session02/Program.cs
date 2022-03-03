@@ -6,7 +6,7 @@ int a = 5;
 int b = 6;
 int sum = a + b;
 double div = (double)a / b;
-Console.WriteLine("The sum is :" +sum);
+Console.WriteLine("The sum is :" + sum);
 Console.WriteLine("The devision is :" + div);
 
 // 3)
@@ -35,7 +35,7 @@ Console.WriteLine("There are " + (secs / (float)60) + " minutes, " + (secs / (fl
 
 int seconds = 25152;
 TimeSpan Interval = TimeSpan.FromSeconds(seconds);
-Console.WriteLine("There are " + Interval.TotalMinutes + " minutes, " + Interval.TotalHours + " hours, "+ Interval.TotalDays + " days and "+ Interval.TotalDays/(float)365+" years.");
+Console.WriteLine("There are " + Interval.TotalMinutes + " minutes, " + Interval.TotalHours + " hours, " + Interval.TotalDays + " days and " + Interval.TotalDays / (float)365 + " years.");
 //7)
 int tempCel = 45;
 double tempKel = tempCel + 273;

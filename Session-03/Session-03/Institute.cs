@@ -8,14 +8,19 @@ namespace Session_03
 {
     public class Institute
     {
+        public Guid ID { get; }
+        public string Name { get; set; }
 
+        public int YearsInService { get; set; }
 
-        
-        public string getName() { return Name; }
-        public void setName(string name) { Name = name; }
         public Institute()
         {
-            Guid ID = Guid.NewGuid();
+            ID = Guid.NewGuid();
         }
+
+        
+        public string GetName() { return Name; }
+        public void setName(string name) { Name = name; }
+        
     }
 }

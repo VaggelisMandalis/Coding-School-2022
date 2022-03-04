@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Session_04
 {
-    internal class Class1
+    public class Class1
     {
+        public Class1()
+        {
+
+
+        }
+        public string ReverseString(string name)
+        {
+            int length = name.Length - 1;
+            string reverseName = string.Empty;
+            while (length >= 0)
+            {
+
+                reverseName = reverseName + name[length];
+                length--;
+            }
+
+
+            return reverseName;
+
+        }
+
+
+
+
     }
 }

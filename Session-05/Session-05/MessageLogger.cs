@@ -10,15 +10,19 @@ namespace Session_05
     {
         public Message[] Messages { get; set; }
 
-        public void ReadAll()
+        public Message[] ReadAll()
         {
-            Messages = new Message[Messages.Length];
+            return Messages;
         }
-        public void Clear()
+        public void  Clear()
         {
+            for (int i = 0; i < Messages.Length; i++)
+            {
 
+            }
         }
         public void Write(Message) { 
+
         }
 
     }

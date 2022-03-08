@@ -11,7 +11,13 @@ namespace Session_05
         public Guid ID { get; set; }
         public DateTime TimeStamp { get; set; }
         public string _Message { get; set; }
-
+        public Message(Guid id, DateTime timeStamp, string message)
+        {
+            ID = id;
+            TimeStamp = timeStamp;
+            _Message = message;
+        }
 
 
     }
+}

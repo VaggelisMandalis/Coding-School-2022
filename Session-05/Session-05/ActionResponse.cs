@@ -8,9 +8,19 @@ namespace Session_05
 {
     public class ActionResponse
     {
+        public Guid ResponseID { get; set; }
+        public string Output { get; set; }
+        public Guid RequestID { get; set; }
 
-        public Guid ResponseID { get; set; }   
-        public string Output { get; set; }  
+        public ActionResponse(Guid requestID, Guid responseID, string output)
+        {
+            RequestID = requestID;
+            ResponseID = responseID;
+            Output = output;
+        }
+
+        
+
 
     }
-}
+}    

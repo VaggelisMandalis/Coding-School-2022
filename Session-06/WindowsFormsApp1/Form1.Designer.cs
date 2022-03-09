@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.editFormUserControl1 = new DevExpress.XtraGrid.Views.Grid.EditFormUserControl();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // editFormUserControl1
@@ -60,25 +60,13 @@
             this.editFormUserControl1.Size = new System.Drawing.Size(152, 91);
             this.editFormUserControl1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.editFormUserControl1.SetBoundPropertyName(this.label1, "");
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(368, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Calculator";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // textBox2
             // 
             this.editFormUserControl1.SetBoundPropertyName(this.textBox2, "");
-            this.textBox2.Location = new System.Drawing.Point(454, 69);
+            this.textBox2.Location = new System.Drawing.Point(62, 26);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(255, 264);
+            this.textBox2.Size = new System.Drawing.Size(278, 37);
             this.textBox2.TabIndex = 9;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -264,7 +252,7 @@
             this.label2.AutoSize = true;
             this.editFormUserControl1.SetBoundPropertyName(this.label2, "");
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(629, 37);
+            this.label2.Location = new System.Drawing.Point(575, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 26;
@@ -296,7 +284,7 @@
             // button19
             // 
             this.editFormUserControl1.SetBoundPropertyName(this.button19, "");
-            this.button19.Location = new System.Drawing.Point(62, 202);
+            this.button19.Location = new System.Drawing.Point(62, 198);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(47, 37);
             this.button19.TabIndex = 29;
@@ -304,13 +292,24 @@
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
+            // textBox1
+            // 
+            this.editFormUserControl1.SetBoundPropertyName(this.textBox1, "");
+            this.textBox1.Location = new System.Drawing.Point(474, 69);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(278, 213);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.editFormUserControl1.SetBoundPropertyName(this, "");
-            this.ClientSize = new System.Drawing.Size(800, 468);
+            this.ClientSize = new System.Drawing.Size(800, 343);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
@@ -332,7 +331,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.editFormUserControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -344,7 +342,6 @@
         #endregion
 
         private DevExpress.XtraGrid.Views.Grid.EditFormUserControl editFormUserControl1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -366,6 +363,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

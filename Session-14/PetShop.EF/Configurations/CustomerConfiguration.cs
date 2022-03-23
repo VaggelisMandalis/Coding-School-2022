@@ -18,8 +18,8 @@ namespace PetShopEFLibrary
             builder.Property(todo => todo.ID);
             builder.Property(x => x.Name).HasMaxLength(50);
             builder.Property(x => x.SurName).HasMaxLength(50);
-            builder.Property(x => x.Phone);
-            builder.Property(x=>x.TIN);
+            builder.Property(x => x.Phone).HasMaxLength(10);
+            builder.Property(x=>x.TIN).HasMaxLength(10);
         }
     }
 }

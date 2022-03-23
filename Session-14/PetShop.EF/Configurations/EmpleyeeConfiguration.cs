@@ -18,7 +18,7 @@ namespace PetShopEFLibrary
             builder.Property(x => x.ID);
             builder.Property(x => x.Name).HasMaxLength(50);
             builder.Property(x => x.SurName).HasMaxLength(50);
-            builder.Property(x => x.SalaryPerMonth);
+            builder.Property(x => x.SalaryPerMonth).HasMaxLength(10).HasPrecision(2);
             builder.Property(x => x.EmployeeType);
         }
     }

@@ -20,8 +20,8 @@ namespace PetShopEFLibrary
             builder.Property(x => x.ID);
             builder.Property(x => x.PetFoodQty);
             builder.Property(x => x.PetFoodPrice);
-            builder.Property(x => x.PetPrice);
-            builder.Property(x => x.TotalPrice);
+            builder.Property(x => x.PetPrice).HasPrecision(2);
+            builder.Property(x => x.TotalPrice).HasPrecision(2);
             builder.Property(x => x.CustomerID);
             builder.Property(x => x.EmployeeID);
             builder.Property(x => x.Date);

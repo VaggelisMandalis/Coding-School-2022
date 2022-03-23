@@ -18,7 +18,7 @@ namespace PetShopEFLibrary
             builder.HasKey(x => x.ID);
             builder.Property(x => x.ID);
             builder.Property(x => x.PetStatus);
-            builder.Property(x => x.Cost);
+            builder.Property(x => x.Cost).HasMaxLength(10);
             builder.Property(x => x.Breed).HasMaxLength(50);
             builder.Property(x => x.AnimalType).HasMaxLength(50);
         }

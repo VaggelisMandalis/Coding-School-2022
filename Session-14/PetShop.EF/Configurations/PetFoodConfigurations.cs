@@ -17,8 +17,8 @@ namespace PetShopEFLibrary
             builder.ToTable("PetFood");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.ID);
-            builder.Property(x => x.Cost);
-            builder.Property(x => x.Price);
+            builder.Property(x => x.Cost).HasPrecision(2);
+            builder.Property(x => x.Price).HasPrecision(2);
             builder.Property(x => x.AnimalType);
         }
     }

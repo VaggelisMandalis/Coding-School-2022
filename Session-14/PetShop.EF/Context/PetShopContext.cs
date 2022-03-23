@@ -24,6 +24,9 @@ namespace PetShopEFLibrary
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new EmpleyeeConfiguration());
+            modelBuilder.ApplyConfiguration(new PetConfigurations());
+            modelBuilder.ApplyConfiguration(new PetFoodConfigurations());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

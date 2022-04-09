@@ -20,6 +20,7 @@ namespace PetShopEFLibrary
             builder.Property(x => x.SurName).HasMaxLength(50);
             builder.Property(x => x.SalaryPerMonth).HasMaxLength(10).HasPrecision(2);
             builder.Property(x => x.EmployeeType);
+            //builder.HasOne(Employee => Employee.PetShop).WithMany(PetShop => PetShop.Employees).HasForeignKey(Employee => Employee.ID);
         }
     }
 }

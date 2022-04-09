@@ -27,5 +27,8 @@ namespace PetShopLib.Impl
         {
             return (PetFood)MemberwiseClone();
         }
+        public int PetShopID;
+        public PetShop PetShop;
+        
     }
 }

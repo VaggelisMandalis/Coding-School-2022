@@ -18,6 +18,8 @@ namespace PetShopLib.Impl
         {
             ID = Guid.NewGuid();
         }
+        public int PetShopID;
+        public PetShop PetShop;
     }
 
 }

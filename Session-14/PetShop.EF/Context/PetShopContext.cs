@@ -11,15 +11,15 @@ namespace PetShopEFLibrary
 {
     internal class PetShopContext :DbContext
     {
-        public DbSet<Customer>? CustomerContext { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<Employee>? EmployeesContext { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Pet>? PetContext { get; set; }
+        public DbSet<Pet> Pets { get; set; }
 
-        public DbSet<PetFood>? PetFoodContext { get; set; }
+        public DbSet<PetFood> PetFoods { get; set; }
 
-        public DbSet<Transaction>? TransactionContext { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -27,6 +27,7 @@ namespace PetShopEFLibrary
             modelBuilder.ApplyConfiguration(new EmpleyeeConfiguration());
             modelBuilder.ApplyConfiguration(new PetConfigurations());
             modelBuilder.ApplyConfiguration(new PetFoodConfigurations());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

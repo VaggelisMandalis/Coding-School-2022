@@ -15,11 +15,12 @@ namespace PetShopEFLibrary
         {
             builder.ToTable("Customer");
             builder.HasKey(x => x.ID);
-            builder.Property(todo => todo.ID);
+            builder.Property(x => x.ID);
             builder.Property(x => x.Name).HasMaxLength(50);
             builder.Property(x => x.SurName).HasMaxLength(50);
-            builder.Property(x => x.Phone).HasMaxLength(10);
-            builder.Property(x=>x.TIN).HasMaxLength(10);
+            builder.Property(x => x.Phone);
+            builder.Property(x=>x.TIN);
+            //builder.HasOne(Customer => Customer.PetShop).WithMany(PetShop => PetShop.Customers).HasForeignKey(Customer => Customer.ID);
         }
     }
 }

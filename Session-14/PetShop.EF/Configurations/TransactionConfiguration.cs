@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PetShopEFLibrary
 {
-    internal class TransactionConfiguration
+    internal class TransactionConfiguration:IEntityTypeConfiguration<Transaction>
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {

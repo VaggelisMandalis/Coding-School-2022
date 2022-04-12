@@ -1,0 +1,98 @@
+﻿@page "/customerlist/edit/{Id:guid?}"
+@using FuelStationFinal.Shared.ViewModels
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<PageTitle>Fuel Station - Customer</PageTitle>
+
+@if (CustomerItem == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    @if (Id == Guid.Empty)
+    {
+        <h2>Add new customer</h2>
+    }
+    else
+    {
+        <h2>Edit @($"{CustomerItem.Surname} {CustomerItem.Name}")</h2>
+    }
+    @if (ShowingErrorMessages)
+    {
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>There was an error with the input fields.</p>
+                <p>Please make sure that you have enter all the values correctly.</p>
+            </div>
+        </div>
+    }
+   <div class="row">
+        <div class="col-md-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" @bind="@CustomerItem.Name" />
+        </div>
+        <div class="col-md-3">
+                <label class="form-label">Surname</label>
+                <input class="form-control" @bind="@CustomerItem.Surname" />
+        </div>
+        <div class="col-md-3">
+                <label class="form-label">CardNumber</label>
+                <input class="form-control" @bind="@CustomerItem.CardNumber" />
+        </div> 
+        
+        
+    </div> 
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+
+
+}
+
+
+@code {
+    [Parameter] public Guid? Id { get; set ; } 
+
+    CustomerEditViewModel CustomerItem { get; set; }
+    private bool ShowingErrorMessages = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            Id = Guid.Empty;
+        }
+        CustomerItem = await httpClient.GetFromJsonAsync<CustomerEditViewModel>($"customer/{Id}");
+    }
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(CustomerItem.Name) ||
+            string.IsNullOrEmpty(CustomerItem.Surname) ||
+            string.IsNullOrEmpty(CustomerItem.CardNumber)) 
+        {
+            ShowingErrorMessages = true;
+            return;
+        }
+        ShowingErrorMessages = false;
+        HttpResponseMessage response;
+        if (Id == Guid.Empty)
+        {
+            response = await httpClient.PostAsJsonAsync("customer", CustomerItem);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("customer", CustomerItem);
+        }
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("customerlist");
+    }
+    protected void OnCancel()
+    {
+        navigationManager.NavigateTo("customerlist");
+    }
+}

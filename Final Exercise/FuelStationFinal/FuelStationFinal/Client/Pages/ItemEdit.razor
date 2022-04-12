@@ -1,0 +1,124 @@
+﻿@page "/itemlist/edit/{Id:guid?}"
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+@using FuelStation.Models;
+@using static FuelStation.Models.Entities.Enums
+@using FuelStationFinal.Shared.ViewModels
+
+
+<PageTitle>Fuel Station - Item</PageTitle>
+
+@if( itemItem == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    @if (Id == Guid.Empty)
+    {
+        <h2>Add new item</h2>
+    }
+    else
+    {
+        <h2>Edit @($"{itemItem.Code} {itemItem.Description}")</h2>
+    }
+    @if (ShowingErrorMesseges)
+    {
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>There was an error with the input fields.</p>
+                <p>Please make sure that you have enter all the values correctly.</p>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-6">
+            <label for="item-code">Code</label>
+            <input name="item-code" class="form-control" @bind="@itemItem.Code" placeholder="Item Code" />
+        </div>
+         <div class="col-md-6">
+            <label for="item-description">Description</label>
+            <input name="item-description" class="form-control" @bind="@itemItem.Description" placeholder="Item Description" />
+        </div>
+    </div>
+    <div class="row-md-1">
+            <div class="col-md-4">
+                <label for="item-price">Price</label>
+                <input name="item-price" type="number" class="form-control" @bind="@itemItem.Price" placeholder="Item Price" min="0"/>
+            </div> 
+            <div class="col-md-4">
+                <label for="item-cost">Cost</label>
+                <input name="item-cost" type="number" class="form-control" @bind="@itemItem.Cost" placeholder="Item Cost" min="0"/>
+            </div> 
+            <div class="col-md-4">
+            <label for="item-type">Type</label>
+                     <select name="item-type" class="form-select" @bind="ItemType">
+                     <option value="-1">Select Item Type</option>
+                     @foreach (var item in Enum.GetValues(typeof(ItemType)))
+                     {
+                         <option value="@((int)item)">@item.ToString()</option>
+                     }
+                     </select>
+            </div>
+    </div> 
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+    
+}
+@code {
+    [Parameter] public Guid? Id { get; set; }
+    ItemEditViewModel itemItem { get; set; }
+    private int ItemType { get; set; } = -1;
+    private bool ShowingErrorMesseges = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            Id = Guid.Empty;
+        }
+
+        itemItem = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{Id}");
+
+        if(Id != null)
+        {
+            ItemType = (int)itemItem.ItemType;
+        }
+    }
+
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(itemItem.Code) ||
+            string.IsNullOrEmpty(itemItem.Description) ||
+            itemItem.Price <= 0 ||
+            itemItem.Cost <= 0 ||
+            ItemType == -1)
+        {
+            ShowingErrorMesseges = true;
+            return;
+        }
+        ShowingErrorMesseges = false;
+
+        HttpResponseMessage response;
+        itemItem.ItemType = (ItemType)ItemType;
+        if (Id == Guid.Empty)
+        {
+            response = await httpClient.PostAsJsonAsync("Item", itemItem);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("Item", itemItem);
+        }
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("itemList");
+    }
+    protected void OnCancel()
+    {
+        navigationManager.NavigateTo("itemList");
+    }
+
+}

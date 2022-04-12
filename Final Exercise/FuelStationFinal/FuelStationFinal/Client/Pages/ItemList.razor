@@ -1,0 +1,88 @@
+﻿@page "/itemlist"
+@inject HttpClient httpClient
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+@using FuelStationFinal.Shared.ViewModels
+@using Microsoft.AspNetCore.Components;
+@using System.Net.Http.Json;
+@using FuelStationFinal.Shared;
+
+<PageTitle>Fuel Station - Items</PageTitle>
+
+<h3>Items </h3>
+<div class=row>
+
+    <button class="btn btn-primary w-25" @onclick="AddItem">Add</button>
+
+</div>
+@if (isLoading)
+{
+    <p> Loading...</p>
+}
+else
+{
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>ItemType</th>
+                    <th>Price</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in itemList)
+                {
+                    <tr>
+                        <td>@item.Code</td>
+                        <td>@item.Description</td>
+                        <td>@item.ItemType</td>
+                        <td>@item.Price</td>
+                        <td>@item.Cost</td>
+                        <td>
+                            <button class="btn btn-warning text-primary" @onclick="() => EditItem(item)">Edit</button>
+                            <button class="btn btn-danger text-primary" @onclick="() => DeleteItem(item)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    List<ItemListViewModel> itemList = new();
+    bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+
+    private async Task LoadItemsFromServer()
+    {
+        itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("item");
+    }
+
+    async Task AddItem()
+    {
+        navigationManager.NavigateTo("/itemlist/edit");
+    }
+    async Task EditItem(ItemListViewModel itemToEdit)
+    {
+        navigationManager.NavigateTo($"/itemlist/edit/{itemToEdit.ID}");
+    }
+    async Task DeleteItem(ItemListViewModel itemToDelete)
+    {
+        var response = await httpClient.DeleteAsync($"item/{itemToDelete.ID}");
+        response.EnsureSuccessStatusCode();
+        await LoadItemsFromServer();
+    }
+
+
+
+
+}

@@ -9,6 +9,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FuelStation.Models.Entities.Enums;
 
 namespace FuelStation.Win
 {
@@ -16,14 +17,16 @@ namespace FuelStation.Win
     {
         private ItemListViewModel _itemViewModel;
         HttpClient httpClient= new HttpClient();
+        private bool _addItem = true;
         public ItemForm()
         {
 
             InitializeComponent();
         }
-        public ItemForm(ItemListViewModel item) : this()
+        public ItemForm(ItemListViewModel item, bool addItem) : this()
         {
             _itemViewModel = item;
+            _addItem = addItem;
         }
 
         private void ItemForm_Load(object sender, EventArgs e)
@@ -37,17 +40,20 @@ namespace FuelStation.Win
         }
         private void SetDataBindings()
         {
+            string[] itemType = Enum.GetNames(typeof(ItemType));
+            cmbItemType.Items.AddRange(itemType);
+            cmbItemType.DataBindings.Add(new Binding("Text", bsItems, "ItemType", true));
             txtCode.DataBindings.Add(new Binding("Text", bsItems, "Code", true));
             txtDescription.DataBindings.Add(new Binding("Text", bsItems, "Description", true));
             txtPrice.DataBindings.Add(new Binding("Text", bsItems, "Price", true));
             txtCost.DataBindings.Add(new Binding("Text", bsItems, "Cost", true));
-            cmbItemType.DataBindings.Add(new Binding("Text", bsItems, "ItemType", true));
 
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if (_itemViewModel.ID == Guid.Empty)
+            //if (_itemViewModel.ID == Guid.Empty)
+            if (_addItem == true)
             {
                 var response = await httpClient.PostAsJsonAsync("https://localhost:7128/item", _itemViewModel);
                 response.EnsureSuccessStatusCode();

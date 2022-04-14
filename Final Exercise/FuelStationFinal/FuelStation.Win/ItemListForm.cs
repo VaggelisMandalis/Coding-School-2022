@@ -15,6 +15,7 @@ namespace FuelStation.Win
     public partial class ItemListForm : Form
     {
         HttpClient httpClient = new HttpClient();
+        private bool addItem = true;
         public ItemListForm()
         {
             InitializeComponent();
@@ -43,10 +44,11 @@ namespace FuelStation.Win
 
         private async void btnEdit_Click(object sender, EventArgs e)
         {
+            addItem = false;
             if (grvItem.SelectedRows.Count != 1)
                 return;
             var selectedItem = (ItemListViewModel)grvItem.SelectedRows[index: 0].DataBoundItem;
-            var item = new ItemForm(selectedItem);
+            var item = new ItemForm(selectedItem,addItem);
             item.ShowDialog();
             await RefreshData();
         }
@@ -59,6 +61,11 @@ namespace FuelStation.Win
             var response = await httpClient.DeleteAsync($"https://localhost:7128/item/{selectedItem.ID}/");
             response.EnsureSuccessStatusCode();
             await RefreshData();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

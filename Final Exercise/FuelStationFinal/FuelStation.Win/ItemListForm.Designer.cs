@@ -42,7 +42,7 @@
             this.grvItem.Location = new System.Drawing.Point(124, 5);
             this.grvItem.Name = "grvItem";
             this.grvItem.RowTemplate.Height = 25;
-            this.grvItem.Size = new System.Drawing.Size(495, 267);
+            this.grvItem.Size = new System.Drawing.Size(566, 348);
             this.grvItem.TabIndex = 0;
             // 
             // btnCancel
@@ -53,6 +53,7 @@
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnDelete
             // 

@@ -17,6 +17,7 @@ namespace FuelStation.EF.Context
         public DbSet<Item> Items { get; set; }
         public DbSet<Transaction> Transactions{ get; set; }
         public DbSet<TransactionLine> TransactionLines { get; set; }
+        public DbSet<Logins> Logins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace FuelStation.EF.Context
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionLineConfiguration());
+            modelBuilder.ApplyConfiguration(new LoginsConfiguration());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

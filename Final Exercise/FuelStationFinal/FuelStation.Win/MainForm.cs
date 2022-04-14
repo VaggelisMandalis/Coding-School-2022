@@ -16,5 +16,17 @@ namespace FuelStation.Win
         {
             InitializeComponent();
         }
+
+        private void ListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomerListForm form = new CustomerListForm();
+            form.ShowDialog();
+        }
+
+        private void listToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ItemListForm form = new ItemListForm();
+            form.ShowDialog();
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace FuelStation.Win
         }
         private void SetDataBindings()
         {
-            txtCardNumber.DataBindings.Add(new Binding("Text", bsCustomers, "CardNumber", true));
+            //txtCardNumber.DataBindings.Add(new Binding("Text", bsCustomers, "CardNumber", true));
             txtName.DataBindings.Add(new Binding("Text", bsCustomers, "Name", true));
             txtSurname.DataBindings.Add(new Binding("Text", bsCustomers, "Surname", true));
 
@@ -60,9 +60,15 @@ namespace FuelStation.Win
 
         private async void btnSave_Click_1(object sender, EventArgs e)
         {
-            //if (_customerViewModel.ID == Guid.Empty)
-            if(_addCustomer==true)
+            if (txtName.Text == "" || txtSurname.Text == "")
             {
+                MessageBox.Show("Name or Surname fields are empty", "Data Entry Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtName.Focus();
+            }
+            //if (_customerViewModel.ID == Guid.Empty)
+            else if (_addCustomer==true)
+            {
+                _customerViewModel.CardNumber = "A" + Guid.NewGuid().ToString("N").Substring(0, 10);
                 var response = await httpClient.PostAsJsonAsync("https://localhost:7128/customer", _customerViewModel);
                 response.EnsureSuccessStatusCode();
             }

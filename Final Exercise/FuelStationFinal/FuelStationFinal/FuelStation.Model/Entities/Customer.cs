@@ -8,7 +8,7 @@ namespace FuelStation.Models.Entities
 {
     public class Customer:BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "A" + Guid.NewGuid().ToString("N").Substring(0, 10);
         public string Surname { get; set; }
         public string CardNumber { get; set; }
         //Relations

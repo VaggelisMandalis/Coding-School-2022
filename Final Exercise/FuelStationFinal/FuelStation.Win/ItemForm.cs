@@ -53,7 +53,17 @@ namespace FuelStation.Win
         private async void btnSave_Click(object sender, EventArgs e)
         {
             //if (_itemViewModel.ID == Guid.Empty)
-            if (_addItem == true)
+            if (txtCode.Text == "" || txtDescription.Text == "")
+            {
+                MessageBox.Show("Code or Description fields are empty", "Data Entry Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCode.Focus();
+            }
+            else if ((int.TryParse(txtPrice.Text, out int code) && code <= 0)|| (int.TryParse(txtCost.Text, out int amount) && amount <= 0))
+            {
+                MessageBox.Show("Price or Cost fields can not be negative", "Data Entry Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCode.Focus();
+            }
+            else if (_addItem == true)
             {
                 var response = await httpClient.PostAsJsonAsync("https://localhost:7128/item", _itemViewModel);
                 response.EnsureSuccessStatusCode();

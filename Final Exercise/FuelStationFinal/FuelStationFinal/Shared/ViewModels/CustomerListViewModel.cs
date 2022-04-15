@@ -11,6 +11,7 @@ namespace FuelStationFinal.Shared.ViewModels
         public Guid ID { get; set; }= Guid.NewGuid();
         public string Name { get; set; }
         public string Surname { get; set; }
+        //public string CardNumber { get; set; } = "A" + Guid.NewGuid().ToString("N").Substring(0, 10);
         public string CardNumber { get; set; }
     }
     public class CustomerEditViewModel

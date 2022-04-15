@@ -17,7 +17,7 @@ namespace FuelStation.Models.Entities
         }
         public enum EmployeeType 
         {
-            Mananer,
+            Manager,
             Staff,
             Cashier
         }

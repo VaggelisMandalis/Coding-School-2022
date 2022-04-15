@@ -4,10 +4,12 @@
 @inject NavigationManager navigationManager
 
 <PageTitle>Fuel Station - Customer</PageTitle>
-
+<br />
 @if (CustomerItem == null)
 {
-    <p>Loading ...</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+    </div>
 }
 else
 {
@@ -37,19 +39,17 @@ else
                 <label class="form-label">Surname</label>
                 <input class="form-control" @bind="@CustomerItem.Surname" />
         </div>
-        <div class="col-md-3">
+        @*<div class="col-md-3">
                 <label class="form-label">CardNumber</label>
                 <input class="form-control" @bind="@CustomerItem.CardNumber" />
-        </div> 
-        
-        
-    </div> 
-    <div class="row mt-2">
+        </div> *@
+   </div> 
+   <div class="row mt-2">
         <div class="col">
             <button class="btn btn-success" @onclick="OnSave">Save</button>
             <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
         </div>
-    </div>
+   </div>
 
 
 }
@@ -71,17 +71,20 @@ else
     }
     protected async Task OnSave()
     {
-        if (string.IsNullOrEmpty(CustomerItem.Name) ||
-            string.IsNullOrEmpty(CustomerItem.Surname) ||
-            string.IsNullOrEmpty(CustomerItem.CardNumber)) 
+        if (string.IsNullOrEmpty(CustomerItem.Name) 
+        ||string.IsNullOrEmpty(CustomerItem.Surname)
+        //||string.IsNullOrEmpty(CustomerItem.CardNumber)
+        ) 
         {
             ShowingErrorMessages = true;
             return;
         }
         ShowingErrorMessages = false;
+        
         HttpResponseMessage response;
         if (Id == Guid.Empty)
         {
+            CustomerItem.CardNumber= "A" + Guid.NewGuid().ToString("N").Substring(0, 10);
             response = await httpClient.PostAsJsonAsync("customer", CustomerItem);
         }
         else

@@ -15,7 +15,7 @@
     <button class="btn btn-primary w-25" @onclick="AddItem">Add</button>
 
 </div>
-
+<br/>
 
 @if (isLoading)
 {
@@ -34,6 +34,8 @@ else
                     <th>Type</th>
                     <th>Salary</th>
                     <th>Fired</th>
+                    <th>Hired Date</th>
+                    <th>Fired Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +47,8 @@ else
                         <td>@employee.EmployeeType</td>
                         <td>@employee.SallaryPerMonth</td>
                         <td>@employee.Fired</td>
+                        <td>@employee.HireDateStart</td>
+                        <td>@employee.HireDateEnd</td>
                         <td>
                             <button class="btn btn-warning text-primary" @onclick="() => EditItem(employee)">Edit</button>
                             <button class="btn btn-danger text-primary" @onclick="() => DeleteItem(employee)">Delete</button>
